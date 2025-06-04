@@ -252,11 +252,11 @@
         const urlContainer = document.getElementById('modal-url');
         urlContainer.innerHTML = '';
         if (e.extendedProps.url) {
-          const urlText = e.extendedProps.url;
           const link = document.createElement('a');
-          link.href = urlText;
+          link.href = e.extendedProps.url;
           link.target = '_blank';
-          link.textContent = urlText;
+          link.textContent = e.extendedProps.url;
+          urlContainer.textContent = 'Web: ';
           urlContainer.appendChild(link);
         }
         // Modal anzeigen
