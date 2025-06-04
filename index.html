@@ -268,7 +268,7 @@
   // ───────────────────────────────────────────────────────
   // Initialisiere FullCalendar mit List-Ansicht und lade alle Kalender
   document.addEventListener('DOMContentLoaded', async function () {
-    const calendars = await getCalendars();
+    let calendars = await getCalendars();
 
     // Lade die letzten Aktualisierungen (Timestamps)
     let lastUpdates = {};
@@ -276,6 +276,18 @@
       const luRes = await fetch('last_updates.json');
       if (luRes.ok) lastUpdates = await luRes.json();
     } catch {}
+    // ── Nur Kalender weiterverarbeiten, die in last_updates.json
+    //    einen erfolgreichen Zeitstempel besitzen
+    calendars = calendars.filter(cal =>
+      Object.prototype.hasOwnProperty.call(lastUpdates, cal.name)
+    );
+
+    // Wenn keine aktiven Kalender übrig bleiben → Abbruch & Hinweis
+    if (calendars.length === 0) {
+      document.getElementById('status').textContent =
+        'Keine aktiven Kalender gefunden.';
+      return;
+    }
 
     const statuses = {};
     calendars.forEach(cal => { statuses[cal.name] = 'not reachable'; });

@@ -10,11 +10,12 @@ Live-Website: https://bmmmm.github.io/it-events-bonn/
 Diese Anwendung lädt alle `.ics`-Dateien aus dem Ordner `/calendars`, die per GitHub Actions-Workflow aktualisiert werden, und stellt sie in einer Listenansicht dar. Die wichtigsten Funktionen:
 
 - **Statische HTML-Seite (`index.html`)**:
-  - Liest zur Laufzeit das Objekt `last_updates.json` aus, um alle verfügbaren Kalendernamen zu ermitteln.
+  - Lädt zur Laufzeit `calendars.json`, filtert die darin aufgeführten Kalender anhand von `last_updates.json` und ermittelt so, welche Kalender aktuell erreichbar sind.
   - Baut daraus automatisch das interne `CALENDARS`-Array mit `{ name, url, color }`-Einträgen auf.
   - Parsen der `.ics`-Feeds per [ical.js](https://github.com/mozilla-comm/ical.js/) und Darstellung mit [FullCalendar](https://fullcalendar.io/).
-  - List-Ansicht: Alle kommenden Termine aller Kalender werden in einer Monatsübersicht untereinander angezeigt.
-  - Klick auf einen Termin öffnet ein Alert-Fenster mit Titel, Datum/Uhrzeit, Ort, URL und Beschreibung.
+  - Responsive Ansicht: Auf Desktop eine klassische Monatsübersicht (`dayGridMonth`), auf Mobilgeräten eine Listenansicht (`listMonth`).
+  - Klick auf einen Termin öffnet ein modales Detailfenster mit Titel, Datum/Uhrzeit, Ort, Beschreibung und URL (der Link öffnet sich dabei in einem neuen Tab).
+  - Checkbox‑basierte Status‑ & Filterleiste: Einzelne Kalender lassen sich an‑ und ausschalten; dabei werden Erreichbarkeitsstatus sowie Zeitstempel der letzten Aktualisierung angezeigt.
 
 - **GitHub Actions Workflow (`ci_and_deploy.yml`)**:
   - Läuft stündlich (Cron) und bei Push auf `main` / manueller Ausführung.
