@@ -95,12 +95,12 @@
   // Dynamisch alle Kalender-Namen aus last_updates.json ermitteln
   async function getCalendars() {
     try {
-      const res = await fetch('/last_updates.json');
+      const res = await fetch('last_updates.json');
       if (!res.ok) return [];
       const data = await res.json();
       return Object.keys(data).map((name) => ({
         name,
-        url: `/calendars/${name}.ics`,
+        url: `calendars/${name}.ics`,
         color: '#3788d8' // Standardfarbe; bei Bedarf anpassen oder erweitern
       }));
     } catch (err) {
