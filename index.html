@@ -55,6 +55,8 @@
 </head>
 <body>
 
+  <div id="status" style="padding: 1rem; background: #f3f4f6; font-size: 0.9rem;"></div>
+
   <main>
     <div id="calendar"></div>
   </main>
@@ -72,6 +74,10 @@
     const events = [];
     vevents.forEach((ve) => {
       const ev = new ICAL.Event(ve);
+      // URL vorbereiten: Wenn keine führende HTTP(S)-Angabe, prefix hinzufügen
+      if (ev.url && !/^https?:\/\//i.test(ev.url)) {
+        ev.url = 'http://' + ev.url;
+      }
       if (!ev.summary || !ev.startDate) return;
       events.push({
         id: ev.uid || Math.random().toString(36).slice(2),
@@ -112,8 +118,14 @@
   // ───────────────────────────────────────────────────────
   // Initialisiere FullCalendar mit List-Ansicht und lade alle Kalender
   document.addEventListener('DOMContentLoaded', async function () {
-    const CALENDARS = await getCalendars();
+    const calendars = await getCalendars();
+    const statuses = {};
 
+    // Container für Statusmeldung
+    const statusEl = document.getElementById('status');
+    statusEl.textContent = 'Lade Kalender...';
+
+    // Initialisiere FullCalendar
     const calendarEl = document.getElementById('calendar');
     const calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'listMonth',
@@ -133,19 +145,43 @@
         if (e.extendedProps.url) details += '\nWeb: ' + e.extendedProps.url;
         if (e.extendedProps.description) details += '\n\n' + e.extendedProps.description;
         alert(details);
+      },
+      eventContent(arg) {
+        const parts = [];
+        parts.push({ html: '<b>' + arg.event.title + '</b>' });
+        if (arg.event.extendedProps.url) {
+          const url = arg.event.extendedProps.url;
+          parts.push({ html: '<div><a href="' + url + '" target="_blank" style="font-size:0.85em; color:#2563eb;">' + url + '</a></div>' });
+        }
+        return { domNodes: parts.map(p => {
+            const el = document.createElement('div');
+            el.innerHTML = p.html;
+            return el;
+          })
+        };
       }
     });
-    calendar.render();
 
-    // Lade für jeden Kalender die Events und füge als Event-Source hinzu
-    for (const cal of CALENDARS) {
+    // Lade jeden Kalender, aktualisiere Status und füge Events hinzu
+    for (const cal of calendars) {
       try {
         const events = await loadIcsEvents(cal);
+        statuses[cal.name] = 'reachable';
         calendar.addEventSource(events);
       } catch (err) {
-        console.error('Fehler beim Laden von', cal.url, err);
+        statuses[cal.name] = 'not reachable';
       }
     }
+
+    // Status-Zusammenfassung ausgeben
+    const lines = Object.keys(statuses).map(name => {
+      const stat = statuses[name];
+      const color = stat === 'reachable' ? '#16a34a' : '#dc2626';
+      return '<span style="color:' + color + '">' + name + ': ' + stat + '</span>';
+    });
+    statusEl.innerHTML = 'Kalender-Status: ' + lines.join(' | ');
+
+    calendar.render();
   });
   </script>
 </body>
