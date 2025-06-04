@@ -300,6 +300,8 @@
       },
       eventDisplay: 'block',
       eventClick(info) {
+        // Verhindert, dass FullCalendar direkt zur URL springt
+        info.jsEvent.preventDefault();
         const e = info.event;
         // Titel
         document.getElementById('modal-title').textContent = e.title;
