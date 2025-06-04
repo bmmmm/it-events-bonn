@@ -339,8 +339,13 @@
         document.getElementById('modal-datetime').textContent = datetimeText;
         // Ort
         document.getElementById('modal-location').textContent = e.extendedProps.location ? 'Ort: ' + e.extendedProps.location : '';
-        // Beschreibung
-        document.getElementById('modal-description').textContent = e.extendedProps.description || '';
+        // Beschreibung – URLs als klickbare Links ausgeben
+        const descEl = document.getElementById('modal-description');
+        const rawDesc = e.extendedProps.description || '';
+        const htmlDesc = rawDesc
+          .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">$1</a>')
+          .replace(/\n/g, '<br>');
+        descEl.innerHTML = htmlDesc;
         const urlContainer = document.getElementById('modal-url');
         urlContainer.innerHTML = '';
         if (e.extendedProps.url) {
