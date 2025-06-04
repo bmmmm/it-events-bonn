@@ -182,7 +182,7 @@
       <p id="modal-location"></p>
       <p id="modal-description"></p>
       <p id="modal-url"></p>
-      <button id="modal-close-button">Schließen</button>
+      <button type="button" id="modal-close-button">Schließen</button>
     </div>
   </div>
 
@@ -191,6 +191,7 @@
   </main>
 
   <script>
+  const DEFAULT_COLOR = '#3788d8'; // Standardfarbe, falls kein Farbwert gesetzt ist
   // ───────────────────────────────────────────────────────
   // Parst .ics → FullCalendar-Event-Objekte mit nützlichen Feldern
   async function loadIcsEvents(calendar) {
@@ -215,12 +216,12 @@
       // Einmalige Termine
       if (!ev.isRecurring()) {
         events.push({
-          id: ev.uid || Math.random().toString(36).slice(2),
+          id: ev.uid || (window.crypto?.randomUUID?.() || Math.random().toString(36).slice(2)),
           title: ev.summary,
           start: ev.startDate.toJSDate(),
           end: ev.endDate ? ev.endDate.toJSDate() : null,
-          backgroundColor: calendar.color,
-          borderColor: calendar.color,
+          backgroundColor: calendar.color || DEFAULT_COLOR,
+          borderColor:   calendar.color || DEFAULT_COLOR,
           url: rawUrl,
           extendedProps: {
             calendar: calendar.name,
@@ -231,8 +232,8 @@
         });
       } else {
         // Wiederkehrende Termine expandieren
-        const comp = ve;
-        const iterator = new ICAL.RecurExpansion({ component: comp, dtstart: ev.startDate });
+        const veComp = ve;
+        const iterator = new ICAL.RecurExpansion({ component: veComp, dtstart: ev.startDate });
         let next;
         const duration = ev.endDate ? ev.endDate.toUnixTime() - ev.startDate.toUnixTime() : 0;
         while ((next = iterator.next())) {
@@ -245,8 +246,8 @@
             title: ev.summary,
             start: jsStart,
             end: jsEnd,
-            backgroundColor: calendar.color,
-            borderColor: calendar.color,
+            backgroundColor: calendar.color || DEFAULT_COLOR,
+            borderColor:   calendar.color || DEFAULT_COLOR,
             url: rawUrl,
             extendedProps: {
               calendar: calendar.name,
@@ -262,19 +263,27 @@
   }
 
   // ───────────────────────────────────────────────────────
-  // Dynamisch alle Kalender-Namen aus calendars.json ermitteln
+  // Liefert nur Kalender, die in last_updates.json einen Zeitstempel haben
   async function getCalendars() {
     try {
-      const res = await fetch('calendars.json');
-      if (!res.ok) return [];
-      const data = await res.json();
-      return data.map((cal) => ({
-        name: cal.name,
-        url: `calendars/${cal.name}.ics`,
-        color: cal.color || '#3788d8'
-      }));
+      const [calRes, updRes] = await Promise.all([
+        fetch('calendars.json'),
+        fetch('last_updates.json')
+      ]);
+
+      const calendarsAll = calRes.ok ? await calRes.json() : [];
+      const lastUpdates  = updRes.ok ? await updRes.json() : {};
+
+      return calendarsAll
+        .filter(cal => Object.prototype.hasOwnProperty.call(lastUpdates, cal.name))
+        .map(cal => ({
+          name: cal.name,
+          url: `calendars/${cal.name}.ics`,
+          color: cal.color || DEFAULT_COLOR,
+          lastUpdated: lastUpdates[cal.name]
+        }));
     } catch (err) {
-      console.error('Fehler beim Laden von calendars.json', err);
+      console.error('Fehler beim Kombinieren von calendars.json und last_updates.json', err);
       return [];
     }
   }
@@ -284,17 +293,9 @@
   document.addEventListener('DOMContentLoaded', async function () {
     let calendars = await getCalendars();
 
-    // Lade die letzten Aktualisierungen (Timestamps)
-    let lastUpdates = {};
-    try {
-      const luRes = await fetch('last_updates.json');
-      if (luRes.ok) lastUpdates = await luRes.json();
-    } catch {}
-    // ── Nur Kalender weiterverarbeiten, die in last_updates.json
-    //    einen erfolgreichen Zeitstempel besitzen
-    calendars = calendars.filter(cal =>
-      Object.prototype.hasOwnProperty.call(lastUpdates, cal.name)
-    );
+    // lastUpdates kommt jetzt direkt aus den Kalender-Objekten
+    const lastUpdates = {};
+    calendars.forEach(cal => { lastUpdates[cal.name] = cal.lastUpdated; });
 
     // Wenn keine aktiven Kalender übrig bleiben → Abbruch & Hinweis
     if (calendars.length === 0) {
@@ -390,7 +391,7 @@
       }
     }));
 
-    // Status‑ & Filter‑Liste mit Checkboxen erstellen
+    // Status‑& Filter‑Liste mit Checkboxen erstellen
     statusEl.innerHTML = calendars.map(cal => {
       const stat   = statuses[cal.name];
       const ts     = lastUpdates[cal.name]
