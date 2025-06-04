@@ -12,7 +12,7 @@ Live-Website: https://bmmmm.github.io/it-events-bonn/
 
 Ein zentrales Dashboard, das alle öffentlichen .ics-Feeds von IT-Vereinen in Bonn zusammenführt. Zum Beispiel:
 - [**Datenburg**](https://datenburg.org/) (der Hackspace in Bonn)
-- [**Makerspace**](https://makerspacebonn.de/) (wie der Name sagt, ein Makerspace)
+- [**Makerspace Bonn e.V.**](https://makerspacebonn.de/) (wie der Name sagt, ein Makerspace Bonn e.V.)
 - [**Bitcircus101**](https://bitcircus101.de/) (ein Ort für Technik-Enthusiasten)
 
 Die Seite:
@@ -38,3 +38,18 @@ Die Seite:
 ```bash
 git clone https://github.com/bmmmm/it-events-bonn.git
 cd it-events-bonn</code>
+
+---
+
+### ➕ Neuen Verein hinzufügen
+
+Öffnet `calendars.json` und fügt ein Objekt hinzu (Felder: `name`, `src` (Remote-URL), `url` (lokaler Pfad), `color`):
+
+```json
+{
+  "name": "neuerverein",
+  "src": "https://example.org/neuerverein.ics",
+  "url": "calendars/neuerverein.ics",
+  "color": "#4ade80"
+}
+```

@@ -1,7 +1,20 @@
 [
   {
     "name": "bitcircus101",
-    "url": "https://nc.6bm.de/remote.php/dav/public-calendars/DCaFSYECrcTJRJjC?export",
+    "src": "https://nc.6bm.de/remote.php/dav/public-calendars/DCaFSYECrcTJRJjC?export",
+    "url": "calendars/bitcircus101.ics",
     "color": "#ff6b6b"
+  },
+  {
+    "name": "makerspace",
+    "src": "https://example.org/makerspace.ics",
+    "url": "calendars/makerspace.ics",
+    "color": "#38bdf8"
+  },
+  {
+    "name": "Datenburg",
+    "src": "https://example.org/datenburg.ics",
+    "url": "calendars/datenburg.ics",
+    "color": "#a78bfa"
   }
 ]

@@ -125,7 +125,9 @@
     // ───────────────────────────────────────────────────────
     // ➋ .ics → FullCalendar-Event-Objekte parsen
     async function loadIcsEvents(calendar) {
-      const response = await fetch(`calendars/${calendar.url.split('/').pop()}`);
+      // Kalenderdatei wird schon durch den Workflow in 'calendars/' abgelegt
+      // Hier verwenden wir den nach 'calendars/' relativen Pfad direkt
+      const response = await fetch(calendar.url);
       if (!response.ok) throw new Error(response.status + " " + response.statusText);
       const icsText = await response.text();
       const jcalData = ICAL.parse(icsText);
