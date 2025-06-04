@@ -3,15 +3,5 @@
     "name": "bitcircus101",
     "url": "https://nc.6bm.de/remote.php/dav/public-calendars/DCaFSYECrcTJRJjC?export",
     "color": "#ff6b6b"
-  },
-  {
-    "name": "makerspace",
-    "url": "https://example.org/makerspace.ics",
-    "color": "#38bdf8"
-  },
-  {
-    "name": "Datenburg",
-    "url": "https://example.org/datenburg.ics",
-    "color": "#a78bfa"
   }
 ]
