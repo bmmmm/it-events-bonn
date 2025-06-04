@@ -16,13 +16,14 @@ Diese Anwendung lädt alle `.ics`-Dateien aus dem Ordner `/calendars`, die per G
   - Responsive Ansicht: Auf Desktop eine klassische Monatsübersicht (`dayGridMonth`), auf Mobilgeräten eine Listenansicht (`listMonth`).
   - Klick auf einen Termin öffnet ein modales Detailfenster mit Titel, Datum/Uhrzeit, Ort, Beschreibung und URL (der Link öffnet sich dabei in einem neuen Tab).
   - Checkbox‑basierte Status‑ & Filterleiste: Einzelne Kalender lassen sich an‑ und ausschalten; dabei werden Erreichbarkeitsstatus sowie Zeitstempel der letzten Aktualisierung angezeigt.
+  - Ruhige, komplementäre Farbpalette (Teal‑Akzent, helle Link‑Farbe) und optimierte Month‑View‑Buttons/Hover‑States.
 
 - **GitHub Actions Workflow (`ci_and_deploy.yml`)**:
   - Läuft stündlich (Cron) und bei Push auf `main` / manueller Ausführung.
   - Lädt über `calendars.json` alle konfigurierten `.ics`-Feeds nach `/calendars/*.ics`.
-  - Vergleicht heruntergeladene Dateien mit den vorhandenen:
-    - Wenn eine Datei neu oder geändert ist, wird sie verschoben, und `last_updates.json` wird mit Zeitstempeln aktualisiert.
-    - Wenn mindestens eine Datei aktualisiert wurde, erfolgt ein automatischer Commit und Push.
+  - Vergleicht heruntergeladene Dateien mit den vorhandenen und setzt für **jeden** erfolgreich erreichten Feed den Zeitstempel in `last_updates.json`:
+    - Bei geänderten oder neuen Dateien wird die `.ics` verschoben.
+    - Auch wenn nur `last_updates.json` neue Timestamps enthält, wird committet, sodass Reachability‑Daten immer aktuell bleiben.
   - Danach werden alle Dateien aus dem Repo (inkl. geänderter `.ics`-Dateien) auf den `gh-pages`-Branch deployed.
 
 ---

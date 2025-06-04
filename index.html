@@ -22,9 +22,10 @@
       --fg: #111827;
       --card: #ffffff;
       --border: #e5e7eb;
-      --event-bg: #e0e7ff;   /* soft lavender */
-      --event-border: #c7d2fe;
-      --link: #1d4ed8;
+      --event-bg: #d1fae5;     /* soft mint */
+      --event-border: #a7f3d0; /* pastel mint */
+      --link: #0d9488;         /* calm teal */
+      --link-light: #2dd4bf;   /* bright mint for links */
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -32,9 +33,10 @@
         --fg: #f9fafb;
         --card: #1f2937;
         --border: #374151;
-        --event-bg: #1e40af;   /* calm indigo */
-        --event-border: #1e3a8a;
-        --link: #60a5fa;
+        --event-bg: #064e3b;     /* deep teal */
+        --event-border: #065f46; /* slightly lighter teal */
+        --link: #34d399;         /* mint accent */
+        --link-light: #6ee7b7;   /* lighter mint for dark mode */
       }
     }
     html, body {
@@ -87,7 +89,7 @@
       font-size: 0.95rem;
     }
     #event-modal a {
-      color: #2563eb;
+      color: var(--link-light);
       text-decoration: none;
       word-break: break-all;
     }
@@ -141,7 +143,7 @@
     .fc-list-event:hover a {
       color: #fff !important;
     }
-    a { color: var(--link); }
+    a { color: var(--link-light); }
     /* ───────────── Kalender‑Filter & Statusliste ───────────── */
     .status-list {
       display: flex;
@@ -168,6 +170,27 @@
       width: 1rem;
       height: 1rem;
     }
+    /* ───────────── Monatsansicht (dayGridMonth) ───────────── */
+    /* Toolbar-Buttons in Teal-Akzent */
+    .fc .fc-button-primary {
+      background: var(--link);
+      border-color: var(--link);
+      color: #fff;
+    }
+    .fc .fc-button-primary:not(:disabled).fc-button-active,
+    .fc .fc-button-primary:not(:disabled):active {
+      background: var(--event-border);
+      border-color: var(--event-border);
+      color: #fff;
+    }
+    /* Tages-Kästchen Hover */
+    .fc-daygrid-day:hover {
+      background: rgba(13,148,136,0.08); /* link-teal mit leichter Transparenz */
+    }
+    /* Heute-Markierung weicher gestalten */
+    .fc-day-today {
+      background: rgba(13,148,136,0.15);
+    }
   </style>
 </head>
 <body>
@@ -191,7 +214,7 @@
   </main>
 
   <script>
-  const DEFAULT_COLOR = '#3788d8'; // Standardfarbe, falls kein Farbwert gesetzt ist
+  const DEFAULT_COLOR = '#0d9488'; // ruhiger Akzent (Teal)
   // ───────────────────────────────────────────────────────
   // Parst .ics → FullCalendar-Event-Objekte mit nützlichen Feldern
   async function loadIcsEvents(calendar) {
@@ -274,12 +297,14 @@
       const calendarsAll = calRes.ok ? await calRes.json() : [];
       const lastUpdates  = updRes.ok ? await updRes.json() : {};
 
+      const colorPool = ['#0d9488', '#f97316', '#64748b', '#a78bfa', '#38bdf8', '#fbbf24', '#86efac'];
+
       return calendarsAll
         .filter(cal => Object.prototype.hasOwnProperty.call(lastUpdates, cal.name))
-        .map(cal => ({
+        .map((cal, i) => ({
           name: cal.name,
           url: `calendars/${cal.name}.ics`,
-          color: cal.color || DEFAULT_COLOR,
+          color: cal.color || colorPool[i % colorPool.length],
           lastUpdated: lastUpdates[cal.name]
         }));
     } catch (err) {
