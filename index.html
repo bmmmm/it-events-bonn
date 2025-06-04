@@ -7,10 +7,9 @@
 
   <!-- FullCalendar core (CSS & JS) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js" defer></script>
   <!-- ical.js for parsing .ics feeds -->
-  <script src="https://cdn.jsdelivr.net/npm/ical.js@1.4.0/build/ical.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ical.js@1.4.0/build/ical.min.js" defer></script>
 
   <!-- Inter font & minimal styling -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,6 +22,9 @@
       --fg: #111827;
       --card: #ffffff;
       --border: #e5e7eb;
+      --event-bg: #e0e7ff;   /* soft lavender */
+      --event-border: #c7d2fe;
+      --link: #1d4ed8;
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -30,6 +32,9 @@
         --fg: #f9fafb;
         --card: #1f2937;
         --border: #374151;
+        --event-bg: #1e40af;   /* calm indigo */
+        --event-border: #1e3a8a;
+        --link: #60a5fa;
       }
     }
     html, body {
@@ -98,15 +103,67 @@
     #event-modal button:hover {
       background: #1f2937;
     }
+    #status {
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+      margin: 1rem auto;
+      max-width: 1100px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+    #status span { white-space: nowrap; }
+    @media (max-width: 600px) {
+      .fc-toolbar-title { font-size: 1rem; }
+    }
+    /* High‑contrast event colors */
+    .fc-event {
+      background: var(--event-bg) !important;
+      border-color: var(--event-border) !important;
+      color: var(--fg) !important;
+    }
+    a { color: var(--link); }
+    /* ───────────── Kalender‑Filter & Statusliste ───────────── */
+    .status-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin: 1rem auto;
+      max-width: 1100px;
+    }
+    .status-list label {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.9rem;
+      padding: 0.3rem 0.6rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 0.3rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    .status-list input[type="checkbox"] {
+      accent-color: var(--link);
+      width: 1rem;
+      height: 1rem;
+    }
   </style>
 </head>
 <body>
 
-  <div id="status" style="padding: 1rem; background: #f3f4f6; font-size: 0.9rem;"></div>
+  <div id="status" class="status-list"></div>
 
   <div id="event-modal-overlay">
     <div id="event-modal">
       <h2 id="modal-title"></h2>
+      <p id="modal-calendar"></p>
       <p id="modal-datetime"></p>
       <p id="modal-location"></p>
       <p id="modal-description"></p>
@@ -135,9 +192,10 @@
     rangeEnd.setFullYear(rangeEnd.getFullYear() + 1);
     vevents.forEach((ve) => {
       const ev = new ICAL.Event(ve);
-      // URL vorbereiten: Wenn keine führende HTTP(S)-Angabe, prefix hinzufügen
-      if (ev.url && !/^https?:\/\//i.test(ev.url)) {
-        ev.url = 'http://' + ev.url;
+      // From component, explicitly get the raw URL property if present
+      let rawUrl = ve.getFirstPropertyValue('url') || '';
+      if (rawUrl && !/^https?:\/\//i.test(rawUrl)) {
+        rawUrl = 'https://' + rawUrl;
       }
       if (!ev.summary || !ev.startDate) return;
       // Einmalige Termine
@@ -149,10 +207,11 @@
           end: ev.endDate ? ev.endDate.toJSDate() : null,
           backgroundColor: calendar.color,
           borderColor: calendar.color,
+          url: rawUrl,
           extendedProps: {
             calendar: calendar.name,
             location: ev.location || '',
-            url: ev.url || '',
+            url: rawUrl,
             description: ev.description || ''
           }
         });
@@ -174,10 +233,11 @@
             end: jsEnd,
             backgroundColor: calendar.color,
             borderColor: calendar.color,
+            url: rawUrl,
             extendedProps: {
               calendar: calendar.name,
               location: ev.location || '',
-              url: ev.url || '',
+              url: rawUrl,
               description: ev.description || ''
             }
           });
@@ -226,8 +286,11 @@
 
     // Initialisiere FullCalendar
     const calendarEl = document.getElementById('calendar');
+    // Pick a sensible default view depending on screen width
+    const isMobile = window.matchMedia('(max-width: 600px)').matches;
+    const initialView = isMobile ? 'listMonth' : 'dayGridMonth';
     const calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'listMonth',
+      initialView,
       height: 'auto',
       locale: 'de',
       headerToolbar: {
@@ -240,6 +303,8 @@
         const e = info.event;
         // Titel
         document.getElementById('modal-title').textContent = e.title;
+        // Kalender-Name
+        document.getElementById('modal-calendar').textContent = 'Kalender: ' + e.extendedProps.calendar;
         // Datum/Uhrzeit
         let datetimeText = e.start.toLocaleString();
         if (e.end) datetimeText += ' – ' + e.end.toLocaleString();
@@ -248,15 +313,13 @@
         document.getElementById('modal-location').textContent = e.extendedProps.location ? 'Ort: ' + e.extendedProps.location : '';
         // Beschreibung
         document.getElementById('modal-description').textContent = e.extendedProps.description || '';
-        // URL
         const urlContainer = document.getElementById('modal-url');
         urlContainer.innerHTML = '';
         if (e.extendedProps.url) {
           const link = document.createElement('a');
           link.href = e.extendedProps.url;
           link.target = '_blank';
-          link.textContent = e.extendedProps.url;
-          urlContainer.textContent = 'Web: ';
+          link.textContent = e.extendedProps.url.replace(/^https?:\/\//i, '');
           urlContainer.appendChild(link);
         }
         // Modal anzeigen
@@ -267,7 +330,8 @@
         parts.push({ html: '<b>' + arg.event.title + '</b>' });
         if (arg.event.extendedProps.url) {
           const url = arg.event.extendedProps.url;
-          parts.push({ html: '<div><a href="' + url + '" target="_blank" style="font-size:0.85em; color:#2563eb;">' + url + '</a></div>' });
+          const displayUrl = url.replace(/^https?:\/\//i, '');
+          parts.push({ html: '<div><a href="' + url + '" target="_blank" style="font-size:0.85em;">' + displayUrl + '</a></div>' });
         }
         return { domNodes: parts.map(p => {
             const el = document.createElement('div');
@@ -278,27 +342,57 @@
       }
     });
 
-    // Lade jeden Kalender, aktualisiere Status, füge Events hinzu
-    for (const cal of calendars) {
+    const eventData   = {};   // raw event arrays keyed by calendar name
+    const eventHandles = {};  // active FullCalendar EventSource handles
+
+    // Lade jeden Kalender parallel, aktualisiere Status, füge Events hinzu
+    await Promise.all(calendars.map(async (cal) => {
       try {
         const events = await loadIcsEvents(cal);
-        statuses[cal.name] = 'reachable';
-        calendar.addEventSource(events);
+        statuses[cal.name]   = 'reachable';
+        eventData[cal.name]  = events;
+        eventHandles[cal.name] = calendar.addEventSource(events);
       } catch (err) {
         statuses[cal.name] = 'not reachable';
       }
-    }
+    }));
 
-    // Status-Zusammenfassung ausgeben inkl. Zeitstempel
-    const lines = Object.keys(statuses).map(name => {
-      const stat = statuses[name];
-      const color = stat === 'reachable' ? '#065f46' : '#7f1d1d';
-      const ts = lastUpdates[name] ? ' (letzte Aktualisierung: ' + new Date(lastUpdates[name]).toLocaleString() + ')' : '';
-      return '<span style="color:' + color + '">' + name + ': ' + stat + ts + '</span>';
+    // Status‑ & Filter‑Liste mit Checkboxen erstellen
+    statusEl.innerHTML = calendars.map(cal => {
+      const stat   = statuses[cal.name];
+      const ts     = lastUpdates[cal.name]
+        ? ' (letzte Aktualisierung: ' + new Date(lastUpdates[cal.name]).toLocaleString() + ')'
+        : '';
+      const checkedAttr = stat === 'reachable' ? 'checked' : 'disabled';
+      return `<label><input type="checkbox" id="cb-${cal.name}" ${checkedAttr}> ${cal.name}${ts}</label>`;
+    }).join('');
+
+    // Checkbox‑Event‑Listener hinzufügen
+    calendars.forEach(cal => {
+      const cb = document.getElementById('cb-' + cal.name);
+      if (!cb) return;
+      cb.addEventListener('change', (e) => {
+        if (e.target.checked) {
+          if (!eventHandles[cal.name]) {
+            eventHandles[cal.name] = calendar.addEventSource(eventData[cal.name]);
+          }
+        } else {
+          if (eventHandles[cal.name]) {
+            eventHandles[cal.name].remove();
+            eventHandles[cal.name] = null;
+          }
+        }
+      });
     });
-    statusEl.innerHTML = 'Kalender-Status: ' + (lines.length ? lines.join(' | ') : 'Keine Kalender konfiguriert');
 
     calendar.render();
+    window.addEventListener('resize', () => {
+      const mobile = window.matchMedia('(max-width: 600px)').matches;
+      const desired = mobile ? 'listMonth' : 'dayGridMonth';
+      if (calendar.view.type !== desired) {
+        calendar.changeView(desired);
+      }
+    });
   });
       // Modal-Schließen
       document.getElementById('modal-close-button').addEventListener('click', function() {
