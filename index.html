@@ -40,47 +40,6 @@
       color: var(--fg);
       -webkit-font-smoothing: antialiased;
     }
-    header {
-      padding: 1.25rem 1rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    h1 {
-      font-size: 1.375rem;
-      font-weight: 600;
-      margin: 0;
-    }
-    #controls {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    #filters {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    #filters label {
-      display: flex;
-      gap: 0.4rem;
-      align-items: center;
-      font-size: 0.875rem;
-    }
-    #filters .status {
-      margin-left: 0.3rem;
-      font-size: 0.75rem;
-      color: #dc2626; /* Rot für Fehler */
-    }
-    #filters .last-update {
-      margin-left: 0.3rem;
-      font-size: 0.75rem;
-      color: #4b5563; /* Dunkles Grau für Zeitstempel */
-    }
     #calendar {
       max-width: 1100px;
       margin: 0 auto;
@@ -95,199 +54,99 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>it-events-bonn</h1>
-    <div id="controls">
-      <div id="filters"></div>
-    </div>
-  </header>
 
   <main>
     <div id="calendar"></div>
   </main>
 
   <script>
-    // ───────────────────────────────────────────────────────
-    // ➊ Kalender-Konfiguration (wird aus calendars.json geladen)
-    let CALENDARS = [];
-
-    async function loadCalendarsConfig() {
-      try {
-        const res = await fetch('calendars.json');
-        if (!res.ok) throw new Error('Konfigurationsdatei calendars.json nicht gefunden');
-        CALENDARS = await res.json();
-      } catch (err) {
-        console.error('Fehler beim Laden von calendars.json:', err);
-        CALENDARS = [];
-      }
-    }
-
-    // ───────────────────────────────────────────────────────
-    // ➋ .ics → FullCalendar-Event-Objekte parsen
-    async function loadIcsEvents(calendar) {
-      // Kalenderdatei wird schon durch den Workflow in 'calendars/' abgelegt
-      // Hier verwenden wir den nach 'calendars/' relativen Pfad direkt
-      const response = await fetch(calendar.url);
-      if (!response.ok) throw new Error(response.status + " " + response.statusText);
-      const icsText = await response.text();
-      const jcalData = ICAL.parse(icsText);
-      const comp = new ICAL.Component(jcalData);
-      const vevents = comp.getAllSubcomponents("vevent") || [];
-      const events = [];
-      vevents.forEach((ve) => {
-        const ev = new ICAL.Event(ve);
-        if (!ev.summary || !ev.startDate) return;
-        events.push({
-          id: ev.uid || Math.random().toString(36).slice(2),
-          title: ev.summary,
-          start: ev.startDate.toJSDate(),
-          end: ev.endDate ? ev.endDate.toJSDate() : null,
-          backgroundColor: calendar.color,
-          borderColor: calendar.color,
-          extendedProps: { calendar: calendar.name }
-        });
+  // ───────────────────────────────────────────────────────
+  // Parst .ics → FullCalendar-Event-Objekte mit nützlichen Feldern
+  async function loadIcsEvents(calendar) {
+    const response = await fetch(calendar.url);
+    if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
+    const icsText = await response.text();
+    const jcalData = ICAL.parse(icsText);
+    const comp = new ICAL.Component(jcalData);
+    const vevents = comp.getAllSubcomponents('vevent') || [];
+    const events = [];
+    vevents.forEach((ve) => {
+      const ev = new ICAL.Event(ve);
+      if (!ev.summary || !ev.startDate) return;
+      events.push({
+        id: ev.uid || Math.random().toString(36).slice(2),
+        title: ev.summary,
+        start: ev.startDate.toJSDate(),
+        end: ev.endDate ? ev.endDate.toJSDate() : null,
+        backgroundColor: calendar.color,
+        borderColor: calendar.color,
+        extendedProps: {
+          calendar: calendar.name,
+          location: ev.location || '',
+          url: ev.url || '',
+          description: ev.description || ''
+        }
       });
-      return events;
-    }
+    });
+    return events;
+  }
 
-    // ───────────────────────────────────────────────────────
-    // ➌ Fehler- und Zeitstempel-Helpers
-    function markError(name) {
-      const label = labelMap.get(name);
-      if (label) {
-        label.querySelector(".status").textContent = "(Nicht erreichbar)";
-        label.querySelector(".last-update").textContent = "";
-      }
+  // ───────────────────────────────────────────────────────
+  // Dynamisch alle Kalender-Namen aus last_updates.json ermitteln
+  async function getCalendars() {
+    try {
+      const res = await fetch('/last_updates.json');
+      if (!res.ok) return [];
+      const data = await res.json();
+      return Object.keys(data).map((name) => ({
+        name,
+        url: `/calendars/${name}.ics`,
+        color: '#3788d8' // Standardfarbe; bei Bedarf anpassen oder erweitern
+      }));
+    } catch (err) {
+      console.error('Fehler beim Laden von last_updates.json', err);
+      return [];
     }
-    function clearError(name) {
-      const label = labelMap.get(name);
-      if (label) {
-        label.querySelector(".status").textContent = "";
-      }
-    }
-    function setLastUpdate(name, timestamp) {
-      const label = labelMap.get(name);
-      if (label) {
-        const dt = new Date(timestamp);
-        label.querySelector(".last-update").textContent = `(Zuletzt: ${dt.toLocaleString()})`;
-      }
-    }
+  }
 
-    // ───────────────────────────────────────────────────────
-    // ➍ FullCalendar initialisieren
-    const calendarEl = document.getElementById("calendar");
-    const fc = new FullCalendar.Calendar(calendarEl, {
-      initialView: "dayGridMonth",
-      height: "auto",
-      locale: "de",
+  // ───────────────────────────────────────────────────────
+  // Initialisiere FullCalendar mit List-Ansicht und lade alle Kalender
+  document.addEventListener('DOMContentLoaded', async function () {
+    const CALENDARS = await getCalendars();
+
+    const calendarEl = document.getElementById('calendar');
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'listMonth',
+      height: 'auto',
+      locale: 'de',
       headerToolbar: {
-        left: "prev,next today",
-        center: "title",
-        right: "dayGridMonth,timeGridWeek,listWeek"
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,listMonth'
       },
-      selectable: false,
-      eventDisplay: "block",
+      eventDisplay: 'block',
       eventClick(info) {
-        alert(
-          `${info.event.title}\n\n${info.event.start.toLocaleString()}${info.event.end
-            ? " – " + info.event.end.toLocaleString()
-            : ""}`
-        );
+        const e = info.event;
+        let details = e.title + '\n\n' + e.start.toLocaleString();
+        if (e.end) details += ' – ' + e.end.toLocaleString();
+        if (e.extendedProps.location) details += '\nOrt: ' + e.extendedProps.location;
+        if (e.extendedProps.url) details += '\nWeb: ' + e.extendedProps.url;
+        if (e.extendedProps.description) details += '\n\n' + e.extendedProps.description;
+        alert(details);
       }
     });
-    fc.render();
+    calendar.render();
 
-    // ───────────────────────────────────────────────────────
-    // ➎ Filter-Checkboxes und Event-Source-Verwaltung
-    const filtersEl = document.getElementById("filters");
-    const sourceMap = new Map(); // name → { events, source }
-    const labelMap = new Map();  // name → label-Element
-
-    async function addCalendar(calendar) {
-      const events = await loadIcsEvents(calendar);
-      const source = fc.addEventSource(events);
-      sourceMap.set(calendar.name, { events, source });
-    }
-    function removeCalendar(name) {
-      const entry = sourceMap.get(name);
-      if (entry) {
-        entry.source.remove();
-        sourceMap.delete(name);
-      }
-    }
-    function createFilterCheckbox(calendar) {
-      const label = document.createElement("label");
-      label.style.setProperty("--clr", calendar.color);
-
-      const cb = document.createElement("input");
-      cb.type = "checkbox";
-      cb.checked = true;
-      cb.dataset.name = calendar.name;
-      cb.addEventListener("change", async (e) => {
-        if (e.target.checked) {
-          try {
-            await addCalendar(calendar);
-            clearError(calendar.name);
-          } catch (err) {
-            markError(calendar.name);
-          }
-        } else {
-          removeCalendar(calendar.name);
-          clearError(calendar.name);
-        }
-      });
-
-      const swatch = document.createElement("span");
-      swatch.style.width = "0.85rem";
-      swatch.style.height = "0.85rem";
-      swatch.style.background = calendar.color;
-      swatch.style.borderRadius = "3px";
-      swatch.style.display = "inline-block";
-
-      const textNode = document.createTextNode(" " + calendar.name + " ");
-      const statusEl = document.createElement("span");
-      statusEl.className = "status";
-      statusEl.textContent = "";
-
-      const luEl = document.createElement("span");
-      luEl.className = "last-update";
-      luEl.textContent = "";
-
-      label.append(cb, swatch, textNode, statusEl, luEl);
-      filtersEl.appendChild(label);
-      labelMap.set(calendar.name, label);
-    }
-
-    // ───────────────────────────────────────────────────────
-    // ➏ JSON-Datei mit Zeitstempeln laden
-    async function loadLastUpdates() {
+    // Lade für jeden Kalender die Events und füge als Event-Source hinzu
+    for (const cal of CALENDARS) {
       try {
-        const res = await fetch('last_updates.json');
-        if (!res.ok) throw new Error('Keine last_updates.json vorhanden');
-        const data = await res.json();
-        Object.keys(data).forEach((name) => {
-          setLastUpdate(name, data[name]);
-        });
+        const events = await loadIcsEvents(cal);
+        calendar.addEventSource(events);
       } catch (err) {
-        // Wenn keine Datei oder Fehler, nichts tun
+        console.error('Fehler beim Laden von', cal.url, err);
       }
     }
-
-    // ───────────────────────────────────────────────────────
-    // ➐ Init: Konfig und Checkboxen anlegen, dann Kalender laden
-    (async function init() {
-      await loadCalendarsConfig();
-      await loadLastUpdates();
-      for (const cal of CALENDARS) {
-        createFilterCheckbox(cal);
-        try {
-          await addCalendar(cal);
-          clearError(cal.name);
-        } catch (err) {
-          markError(cal.name);
-        }
-      }
-    })();
+  });
   </script>
 </body>
 </html>
