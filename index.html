@@ -6,7 +6,7 @@
   <title>it-events-bonn</title>
 
   <!-- FullCalendar core (CSS & JS) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js" defer></script>
   <!-- ical.js for parsing .ics feeds -->
   <script src="https://cdn.jsdelivr.net/npm/ical.js@1.4.0/build/ical.min.js" defer></script>
@@ -126,6 +126,20 @@
       background: var(--event-bg) !important;
       border-color: var(--event-border) !important;
       color: var(--fg) !important;
+    }
+    /* Hover: dunklere Akzentfarbe */
+    .fc-event:hover {
+      background: var(--link) !important;
+      color: #fff !important;
+      border-color: var(--link) !important;
+    }
+    /* Hover-Effekt für List‑Ansicht */
+    .fc-list-event:hover td {
+      background: var(--link) !important;
+      color: #fff !important;
+    }
+    .fc-list-event:hover a {
+      color: #fff !important;
     }
     a { color: var(--link); }
     /* ───────────── Kalender‑Filter & Statusliste ───────────── */

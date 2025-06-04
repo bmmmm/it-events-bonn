@@ -12,6 +12,13 @@
     "color": "#38bdf8"
   },
   {
+    "name": "TDF2025",
+    "src": "https://nc.6bm.de/apps/calendar/p/eXAebopPy9xZQCZT",
+    "url": "calendars/TDF2025.ics",
+    "color": "#38bdf8"
+  },
+  
+  {
     "name": "Datenburg",
     "src": "https://example.org/datenburg.ics",
     "url": "calendars/datenburg.ics",
