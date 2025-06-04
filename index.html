@@ -151,6 +151,14 @@
   // Initialisiere FullCalendar mit List-Ansicht und lade alle Kalender
   document.addEventListener('DOMContentLoaded', async function () {
     const calendars = await getCalendars();
+
+    // Lade die letzten Aktualisierungen (Timestamps)
+    let lastUpdates = {};
+    try {
+      const luRes = await fetch('last_updates.json');
+      if (luRes.ok) lastUpdates = await luRes.json();
+    } catch {}
+
     const statuses = {};
     calendars.forEach(cal => { statuses[cal.name] = 'not reachable'; });
 
@@ -195,7 +203,7 @@
       }
     });
 
-    // Lade jeden Kalender, aktualisiere Status und füge Events hinzu
+    // Lade jeden Kalender, aktualisiere Status, füge Events hinzu
     for (const cal of calendars) {
       try {
         const events = await loadIcsEvents(cal);
@@ -206,13 +214,14 @@
       }
     }
 
-    // Status-Zusammenfassung ausgeben
+    // Status-Zusammenfassung ausgeben inkl. Zeitstempel
     const lines = Object.keys(statuses).map(name => {
       const stat = statuses[name];
-      const color = stat === 'reachable' ? '#16a34a' : '#dc2626';
-      return '<span style="color:' + color + '">' + name + ': ' + stat + '</span>';
+      const color = stat === 'reachable' ? '#065f46' : '#7f1d1d';
+      const ts = lastUpdates[name] ? ' (letzte Aktualisierung: ' + new Date(lastUpdates[name]).toLocaleString() + ')' : '';
+      return '<span style="color:' + color + '">' + name + ': ' + stat + ts + '</span>';
     });
-    statusEl.innerHTML = 'Kalender-Status: ' + lines.join(' | ');
+    statusEl.innerHTML = 'Kalender-Status: ' + (lines.length ? lines.join(' | ') : 'Keine Kalender konfiguriert');
 
     calendar.render();
   });
