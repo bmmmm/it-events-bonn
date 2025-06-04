@@ -72,6 +72,9 @@
     const comp = new ICAL.Component(jcalData);
     const vevents = comp.getAllSubcomponents('vevent') || [];
     const events = [];
+    const now = new Date();
+    const rangeEnd = new Date();
+    rangeEnd.setFullYear(rangeEnd.getFullYear() + 1);
     vevents.forEach((ve) => {
       const ev = new ICAL.Event(ve);
       // URL vorbereiten: Wenn keine führende HTTP(S)-Angabe, prefix hinzufügen
@@ -79,38 +82,67 @@
         ev.url = 'http://' + ev.url;
       }
       if (!ev.summary || !ev.startDate) return;
-      events.push({
-        id: ev.uid || Math.random().toString(36).slice(2),
-        title: ev.summary,
-        start: ev.startDate.toJSDate(),
-        end: ev.endDate ? ev.endDate.toJSDate() : null,
-        backgroundColor: calendar.color,
-        borderColor: calendar.color,
-        extendedProps: {
-          calendar: calendar.name,
-          location: ev.location || '',
-          url: ev.url || '',
-          description: ev.description || ''
+      // Einmalige Termine
+      if (!ev.isRecurring()) {
+        events.push({
+          id: ev.uid || Math.random().toString(36).slice(2),
+          title: ev.summary,
+          start: ev.startDate.toJSDate(),
+          end: ev.endDate ? ev.endDate.toJSDate() : null,
+          backgroundColor: calendar.color,
+          borderColor: calendar.color,
+          extendedProps: {
+            calendar: calendar.name,
+            location: ev.location || '',
+            url: ev.url || '',
+            description: ev.description || ''
+          }
+        });
+      } else {
+        // Wiederkehrende Termine expandieren
+        const comp = ve;
+        const iterator = new ICAL.RecurExpansion({ component: comp, dtstart: ev.startDate });
+        let next;
+        const duration = ev.endDate ? ev.endDate.toUnixTime() - ev.startDate.toUnixTime() : 0;
+        while ((next = iterator.next())) {
+          const jsStart = next.toJSDate();
+          if (jsStart < now) continue;
+          if (jsStart > rangeEnd) break;
+          const jsEnd = duration ? new Date(jsStart.getTime() + duration * 1000) : null;
+          events.push({
+            id: ev.uid + '-' + jsStart.toISOString(),
+            title: ev.summary,
+            start: jsStart,
+            end: jsEnd,
+            backgroundColor: calendar.color,
+            borderColor: calendar.color,
+            extendedProps: {
+              calendar: calendar.name,
+              location: ev.location || '',
+              url: ev.url || '',
+              description: ev.description || ''
+            }
+          });
         }
-      });
+      }
     });
     return events;
   }
 
   // ───────────────────────────────────────────────────────
-  // Dynamisch alle Kalender-Namen aus last_updates.json ermitteln
+  // Dynamisch alle Kalender-Namen aus calendars.json ermitteln
   async function getCalendars() {
     try {
-      const res = await fetch('last_updates.json');
+      const res = await fetch('calendars.json');
       if (!res.ok) return [];
       const data = await res.json();
-      return Object.keys(data).map((name) => ({
-        name,
-        url: `calendars/${name}.ics`,
-        color: '#3788d8' // Standardfarbe; bei Bedarf anpassen oder erweitern
+      return data.map((cal) => ({
+        name: cal.name,
+        url: `calendars/${cal.name}.ics`,
+        color: cal.color || '#3788d8'
       }));
     } catch (err) {
-      console.error('Fehler beim Laden von last_updates.json', err);
+      console.error('Fehler beim Laden von calendars.json', err);
       return [];
     }
   }
@@ -120,6 +152,7 @@
   document.addEventListener('DOMContentLoaded', async function () {
     const calendars = await getCalendars();
     const statuses = {};
+    calendars.forEach(cal => { statuses[cal.name] = 'not reachable'; });
 
     // Container für Statusmeldung
     const statusEl = document.getElementById('status');
