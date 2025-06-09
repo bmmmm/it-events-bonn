@@ -24,6 +24,49 @@ TZOFFSETTO:+0100
 END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
+CREATED:20250609T113124Z
+DESCRIPTION:Linkup @ bitcircus101 is our signature monthly meetup for anyon
+ e in Bonn’s tech scene to come together\, share ideas and unwind. Every 
+ third Friday of the month starting at 8 PM\, we kick things off with a ser
+ ies of lightning talks—short\, punchy presentations (3 slides in 3 minut
+ es each) where people can showcase a project\, demo a tool or pose a new q
+ uestion. After the talks\, the formal program wraps up and we transition i
+ nto an open\, relaxed hangout: you can grab a drink or snack\, pull up a c
+ hair and dive into conversations with fellow tech-enthusiasts in a friendl
+ y\, low-pressure atmosphere.\n\nOn all the other Fridays\, we host Casual 
+ Linkup at the same time—no talks\, just a laid-back environment to brain
+ storm\, get feedback\, troubleshoot problems or simply meet others who lov
+ e technology. Whether you’re here to present or to listen\, to ask quest
+ ions or to offer advice\, Linkup is all about building real human connecti
+ ons around shared tech interests
+DTEND;TZID=Europe/Berlin:20250620T223000
+DTSTAMP:20250609T113144Z
+DTSTART;TZID=Europe/Berlin:20250620T200000
+LAST-MODIFIED:20250609T113144Z
+LOCATION:bitcircus101\nDorotheenstraße 101\, 53111 Bonn\, Germany
+RRULE:FREQ=MONTHLY;BYDAY=3FR
+SEQUENCE:0
+SUMMARY:Linkup @ bitcircus101 
+TRANSP:OPAQUE
+UID:19471ECE-D83E-4AA6-B70D-545B3F281B66
+URL;VALUE=URI:bitcircus101.de
+X-APPLE-CREATOR-IDENTITY:com.apple.calendar
+X-APPLE-CREATOR-TEAM-IDENTITY:0000000000
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-MAPKIT-HANDLE="CAESpwIIrk0Q9L
+ u3rqqRrqoaGhIJ+RVruMheSUARFtreE5BbHEAidwoHR2VybWFueRICREUaFk5vcnRoIFJoaW5l
+ LVdlc3RwaGFsaWEqBEJvbm4yBEJvbm46BTUzMTExQgRCb25uUhBEb3JvdGhlZW5zdHJhw59lWg
+ MxMDFiFERvcm90aGVlbnN0cmHDn2UgMTAxigEJTm9yZHN0YWR0KgxiaXRjaXJjdXMxMDEyFERv
+ cm90aGVlbnN0cmHDn2UgMTAxMgo1MzExMSBCb25uMgdHZXJtYW55OC9QAVpOCicI9Lu3rqqRrq
+ oaEhIJ+RVruMheSUARFtreE5BbHEAYrk2QAwGYAwGiHyII9Lu3rqqRrqoaGhYKDGJpdGNpcmN1
+ czEwMRAAKgJlbkAA";X-APPLE-RADIUS=141.1750946044922;X-APPLE-REFERENCEFRAME=
+ 0;X-TITLE="bitcircus101\nDorotheenstraße 101, 53111 Bonn, Germany":geo:50
+ .740501\,7.089417
+BEGIN:VALARM
+ACTION:NONE
+TRIGGER;VALUE=DATE-TIME:19760401T005545Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 CREATED:20250603T160538Z
 DTEND;TZID=Europe/Berlin:20250614T220000
 DTSTAMP:20250603T160613Z
