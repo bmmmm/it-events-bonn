@@ -294,9 +294,10 @@ DESCRIPTION:A relaxed get-together for techies\, creatives\, and curious mi
  nds in the heart of Bonn. Drop by for a chat\, a drink\, or just to unwind
  . Hosted by bitcircus101 – https://bitcircus101.de
 DTEND;TZID=Europe/Berlin:20250829T230000
-DTSTAMP:20250612T124712Z
+DTSTAMP:20250826T131828Z
 DTSTART;TZID=Europe/Berlin:20250829T200000
-LAST-MODIFIED:20250612T115919Z
+EXDATE;TZID=Europe/Berlin:20250829T200000
+LAST-MODIFIED:20250826T131827Z
 LOCATION:Dorotheenstraße 101
 RELATED-TO;RELTYPE=X-CALENDARSERVER-RECURRENCE-SET:72CDA9D5-B0A4-4933-B4F6-
  98C2BE7026CD
@@ -312,10 +313,11 @@ DESCRIPTION:A relaxed get-together for techies\, creatives\, and curious mi
  nds in the heart of Bonn. Drop by for a chat\, a drink\, or just to unwind
  . https://bitcircus101.de
 DTEND;TZID=Europe/Berlin:20250613T230000
-DTSTAMP:20250612T124439Z
+DTSTAMP:20250826T131808Z
 DTSTART;TZID=Europe/Berlin:20250613T200000
 EXDATE;TZID=Europe/Berlin:20250613T200000
-LAST-MODIFIED:20250612T124438Z
+EXDATE;TZID=Europe/Berlin:20250905T200000
+LAST-MODIFIED:20250826T131807Z
 LOCATION:bitcircus101\nDorotheenstraße 101\, 53111 Bonn\, Germany
 RRULE:FREQ=MONTHLY;BYDAY=1FR
 SEQUENCE:0
