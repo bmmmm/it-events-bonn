@@ -606,4 +606,37 @@ X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-MAPKIT-HANDLE="CAESpwIIrk0Q9L
  0;X-TITLE="bitcircus101\nDorotheenstraße 101, 53111 Bonn, Germany":geo:50
  .740501\,7.089417
 END:VEVENT
+BEGIN:VEVENT
+CREATED:20251022T065420Z
+DESCRIPTION:GestaltBar – Unser Viertel ist gestaltbar.\nBald findet die e
+ rste Ausgabe der GestaltBar statt\, einem neuen Format von Ehrenamtlichen 
+ und dem Quartiersmanagement Macke-Viertel.\n\nSie wollen:\n• Sich mit an
+ deren Menschen vernetzen?\n• Gemeinsam einen Weg finden\, etwas zu verä
+ ndern?\n• Ihr Viertel mitgestalten?\nDann kommen Sie zur GestaltBar.\nWi
+ r laden unter dem Motto "Unser Viertel ist gestaltbar" alle herzlich ein\,
+  die sich über (Lokal-)Politik austauschen und etwas im Viertel bewegen w
+ ollen.\nBei dem lockeren Treffen können Sie eigene Themen mitbringen oder
+  bei einem Getränk andere Interessierte kennenlernen.
+DTEND;TZID=Europe/Berlin:20251104T210000
+DTSTAMP:20251022T071316Z
+DTSTART;TZID=Europe/Berlin:20251104T180000
+LAST-MODIFIED:20251022T071316Z
+LOCATION:bitcircus101\nDorotheenstraße 101\, 53111 Bonn\, Germany
+SEQUENCE:0
+SUMMARY:GestaltBar
+TRANSP:OPAQUE
+UID:5436CAED-31FC-47A7-B46D-C730BFBA5DE1
+URL;VALUE=URI:www.quartier-mackeviertel.de
+X-APPLE-CREATOR-IDENTITY:com.apple.calendar
+X-APPLE-CREATOR-TEAM-IDENTITY:0000000000
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-MAPKIT-HANDLE="CAESpwIIrk0Q9L
+ u3rqqRrqoaGhIJ+RVruMheSUARFtreE5BbHEAidwoHR2VybWFueRICREUaFk5vcnRoIFJoaW5l
+ LVdlc3RwaGFsaWEqBEJvbm4yBEJvbm46BTUzMTExQgRCb25uUhBEb3JvdGhlZW5zdHJhw59lWg
+ MxMDFiFERvcm90aGVlbnN0cmHDn2UgMTAxigEJTm9yZHN0YWR0KgxiaXRjaXJjdXMxMDEyFERv
+ cm90aGVlbnN0cmHDn2UgMTAxMgo1MzExMSBCb25uMgdHZXJtYW55OC9QAVpOCicI9Lu3rqqRrq
+ oaEhIJ+RVruMheSUARFtreE5BbHEAYrk2QAwGYAwGiHyII9Lu3rqqRrqoaGhYKDGJpdGNpcmN1
+ czEwMRAAKgJlbkAA";X-APPLE-RADIUS=141.1750946044922;X-APPLE-REFERENCEFRAME=
+ 0;X-TITLE="bitcircus101\nDorotheenstraße 101, 53111 Bonn, Germany":geo:50
+ .740501\,7.089417
+END:VEVENT
 END:VCALENDAR
