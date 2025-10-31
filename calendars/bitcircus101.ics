@@ -278,7 +278,7 @@ DESCRIPTION:A relaxed get-together for techies\, creatives\, and curious mi
  nds in the heart of Bonn. Drop by for a chat\, a drink\, or just to unwind
  . Hosted by bitcircus101 – https://bitcircus101.de
 DTEND;TZID=Europe/Berlin:20250829T230000
-DTSTAMP:20250826T131828Z
+DTSTAMP:20251031T104159Z
 DTSTART;TZID=Europe/Berlin:20250829T200000
 EXDATE;TZID=Europe/Berlin:20250829T200000
 LAST-MODIFIED:20250826T131827Z
@@ -291,6 +291,25 @@ SUMMARY:Casual Linkup@bitcircus101 (5FR)
 TRANSP:OPAQUE
 UID:casual-linkup-5fr@bitcircus101.de
 URL;VALUE=URI:https://bitcircus101.de
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20251031T104158Z
+DESCRIPTION:A relaxed get-together for techies\, creatives\, and curious mi
+ nds in the heart of Bonn. Drop by for a chat\, a drink\, or just to unwind
+ . Hosted by bitcircus101 – https://bitcircus101.de
+DTEND;TZID=Europe/Berlin:20251031T230000
+DTSTAMP:20251031T104159Z
+DTSTART;TZID=Europe/Berlin:20251031T200000
+LAST-MODIFIED:20251031T104158Z
+LOCATION:Dorotheenstraße 101
+RECURRENCE-ID;TZID=Europe/Berlin:20251031T200000
+SEQUENCE:0
+SUMMARY:CANCELED - Casual Linkup@bitcircus101 (5FR)
+TRANSP:OPAQUE
+UID:casual-linkup-5fr@bitcircus101.de
+URL;VALUE=URI:https://bitcircus101.de
+X-APPLE-CREATOR-IDENTITY:com.apple.calendar
+X-APPLE-CREATOR-TEAM-IDENTITY:0000000000
 END:VEVENT
 BEGIN:VEVENT
 DESCRIPTION:A relaxed get-together for techies\, creatives\, and curious mi
