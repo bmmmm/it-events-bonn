@@ -703,12 +703,12 @@ DESCRIPTION:CTF-Start ist 14 Uhr\, wir sind wahrscheinlich schon etwas frü
   sich allerdings nicht direkt an Anfänger\, wie viel wir mit Fragen helfe
  n können oder Dinge erklären können hängt davon ab wie stressig es ger
  ade ist.
-DTEND;TZID=Europe/Berlin:20251108T100000
-DTSTAMP:20251104T084420Z
-DTSTART;TZID=Europe/Berlin:20251108T090000
-LAST-MODIFIED:20251104T084420Z
+DTEND;TZID=Europe/Berlin:20251108T220000
+DTSTAMP:20251107T104024Z
+DTSTART;TZID=Europe/Berlin:20251108T140000
+LAST-MODIFIED:20251107T104024Z
 LOCATION:bitcircus101\nDorotheenstraße 101\, 53111 Bonn\, Germany
-SEQUENCE:0
+SEQUENCE:1
 SUMMARY:SaarCTF
 TRANSP:OPAQUE
 UID:F0BA3D66-7B58-4021-B4DC-68E238143565
