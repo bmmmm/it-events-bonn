@@ -881,4 +881,38 @@ X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-MAPKIT-HANDLE=CAESiQII2TIaEgn
  45556641;X-APPLE-REFERENCEFRAME=0;X-TITLE="Bornheimer Straße 25\nBonn, De
  utschland":geo:50.736635\,7.089447
 END:VEVENT
+BEGIN:VEVENT
+CREATED:20251120T102705Z
+DESCRIPTION:We meet up once a week for games\, puzzles and brain teasers. S
+ tarting with a topic such as a card game or a jigsaw puzzle. Afterwards yo
+ u're welcome to hang out and continue playing and chatting as you like.\nW
+ e play inclusive and together. There is stim toys and you can grab somethi
+ ng to drink from the bitcircus fridge or bring your own.\n\nEinmal die Woc
+ he treffen wir uns zum Spielen\, Puzzeln und Rätseln. Los geht es mit ein
+ em Thema z.B. ein Kartenspiel oder ein Puzzle. Danach wird gechillt und we
+ iter gespielt\, gerätselt oder einfach nur gequatscht.\nWir spielen inklu
+ siv und miteinander. Es gibt Stim Toys und Getränke aus dem bitcircus-Kü
+ hlschrank. Wer mag darf sich auch selbst Getränke mitbringen.
+DTEND;TZID=Europe/Berlin:20251125T220000
+DTSTAMP:20251120T102705Z
+DTSTART;TZID=Europe/Berlin:20251125T190000
+LAST-MODIFIED:20251120T102705Z
+LOCATION:bitcircus101\nDorotheenstraße 101\, 53111 Bonn\, Germany
+RRULE:FREQ=WEEKLY
+SEQUENCE:0
+SUMMARY:Look at my toys!
+TRANSP:OPAQUE
+UID:FC0552E4-F4AB-4193-AAC7-2FB4407DCBEE
+X-APPLE-CREATOR-IDENTITY:com.apple.calendar
+X-APPLE-CREATOR-TEAM-IDENTITY:0000000000
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-MAPKIT-HANDLE="CAESpwIIrk0Q9L
+ u3rqqRrqoaGhIJ+RVruMheSUARFtreE5BbHEAidwoHR2VybWFueRICREUaFk5vcnRoIFJoaW5l
+ LVdlc3RwaGFsaWEqBEJvbm4yBEJvbm46BTUzMTExQgRCb25uUhBEb3JvdGhlZW5zdHJhw59lWg
+ MxMDFiFERvcm90aGVlbnN0cmHDn2UgMTAxigEJTm9yZHN0YWR0KgxiaXRjaXJjdXMxMDEyFERv
+ cm90aGVlbnN0cmHDn2UgMTAxMgo1MzExMSBCb25uMgdHZXJtYW55OC9QAVpOCicI9Lu3rqqRrq
+ oaEhIJ+RVruMheSUARFtreE5BbHEAYrk2QAwGYAwGiHyII9Lu3rqqRrqoaGhYKDGJpdGNpcmN1
+ czEwMRAAKgJlbkAA";X-APPLE-RADIUS=141.1750946044922;X-APPLE-REFERENCEFRAME=
+ 0;X-TITLE="bitcircus101\nDorotheenstraße 101, 53111 Bonn, Germany":geo:50
+ .740501\,7.089417
+END:VEVENT
 END:VCALENDAR
