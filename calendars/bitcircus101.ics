@@ -759,12 +759,12 @@ DESCRIPTION:Kurzbeschreibung:\nRalf kommt in den bitcircus101 für einen pr
  axisnahen Einblick in Synaplan: Open-Source KI-Management\, Audit-Trails\,
   Modellwahl\, Datenschutz\, Developer-Flex.\nMini-Demo\, Austausch\, Anwen
  dungen für unsere Community & Projekte.
-DTEND;TZID=Europe/Berlin:20260109T220000
-DTSTAMP:20251113T112902Z
-DTSTART;TZID=Europe/Berlin:20260109T200000
-LAST-MODIFIED:20251113T112902Z
+DTEND;TZID=Europe/Berlin:20260123T220000
+DTSTAMP:20260105T181615Z
+DTSTART;TZID=Europe/Berlin:20260123T200000
+LAST-MODIFIED:20260105T181615Z
 LOCATION:bitcircus101\nDorotheenstraße 101\, 53111 Bonn\, Germany
-SEQUENCE:0
+SEQUENCE:1
 SUMMARY:Synaplan Deep Dive im bitcircus101 – Demo\, Governance & AI-Talk 
  mit Ralf
 TRANSP:OPAQUE
