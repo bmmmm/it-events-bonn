@@ -57,6 +57,16 @@ TZOFFSETFROM:-0700
 TZOFFSETTO:-0800
 END:STANDARD
 END:VTIMEZONE
+BEGIN:VTIMEZONE
+TZID:Atlantic/Reykjavik
+BEGIN:STANDARD
+DTSTART:19120101T000000
+RDATE:19120101T000000
+TZNAME:GMT
+TZOFFSETFROM:-001608
+TZOFFSETTO:+0000
+END:STANDARD
+END:VTIMEZONE
 BEGIN:VEVENT
 CREATED:20250527T232107Z
 DTEND;TZID=Europe/Berlin:20250528T220000
@@ -979,6 +989,56 @@ SEQUENCE:2
 SUMMARY:Digital Independence Day (DID)
 TRANSP:OPAQUE
 UID:520E27E7-1EAA-4162-8EC6-EBC0641375DB
+X-APPLE-CREATOR-IDENTITY:com.apple.calendar
+X-APPLE-CREATOR-TEAM-IDENTITY:0000000000
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20260219T072321Z
+DESCRIPTION:Das Thema ist dieses Jahr Maintainers matter. Maintainer*innen 
+ machen Software auf verschiedensten Systemen verfügbar. Das kostet Zeit\,
+  Geld und Hardware.\n   \n 13.00 Einlass\n    13.30 Wer sind eigentlich Ma
+ intainer*innen?\n    14.00 Wie können wir Maintainer*innen unterstützen?
+ \n    Vorträge aus Sicht von Maintainer*innen\n        14.30 Dominik - Op
+ enCloud\n        15.30 Jakob Kahl - Plone\n    16.00 Quiz\n    17.00 Light
+ ning talks\n    18.00 Social Event (Ende offen)
+DTEND;TZID=Europe/Berlin:20260221T220000
+DTSTAMP:20260219T072321Z
+DTSTART;TZID=Europe/Berlin:20260221T130000
+LAST-MODIFIED:20260219T072321Z
+LOCATION:bitcircus101\nDorotheenstraße 101\, 53111 Bonn\, Germany
+SEQUENCE:0
+SUMMARY:FSFE: I love free software day
+TRANSP:OPAQUE
+UID:2DB258DE-50CF-46B1-B8B3-F22D53A1BC2B
+URL;VALUE=URI:https://docs.fsfe.org/en/LocalGroups/Active/Bonn/Events/ilove
+ fs
+X-APPLE-CREATOR-IDENTITY:com.apple.calendar
+X-APPLE-CREATOR-TEAM-IDENTITY:0000000000
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-MAPKIT-HANDLE="CAESpwIIrk0Q9L
+ u3rqqRrqoaGhIJ+RVruMheSUARFtreE5BbHEAidwoHR2VybWFueRICREUaFk5vcnRoIFJoaW5l
+ LVdlc3RwaGFsaWEqBEJvbm4yBEJvbm46BTUzMTExQgRCb25uUhBEb3JvdGhlZW5zdHJhw59lWg
+ MxMDFiFERvcm90aGVlbnN0cmHDn2UgMTAxigEJTm9yZHN0YWR0KgxiaXRjaXJjdXMxMDEyFERv
+ cm90aGVlbnN0cmHDn2UgMTAxMgo1MzExMSBCb25uMgdHZXJtYW55OC9QAVpOCicI9Lu3rqqRrq
+ oaEhIJ+RVruMheSUARFtreE5BbHEAYrk2QAwGYAwGiHyII9Lu3rqqRrqoaGhYKDGJpdGNpcmN1
+ czEwMRAAKgJlbkAA";X-APPLE-RADIUS=141.1750946044922;X-APPLE-REFERENCEFRAME=
+ 0;X-TITLE="bitcircus101\nDorotheenstraße 101, 53111 Bonn, Germany":geo:50
+ .740501\,7.089417
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20260219T072627Z
+DESCRIPTION:Erster Termin einer Workshop-Reihe\n\nZielgruppe: jeder\, der d
+ ie Grundlagen Elektrotechnik lernen möchte.\nVorkenntnisse: keine\nThemen
+ : Steckbrett\, Schaltpläne\, Grundbausteine (Widerstände\, Kondensatoren
+ \, LEDs etc.)\, Ohmsches Gesetz\, Schaltungen
+DTEND;TZID=Atlantic/Reykjavik:20260228T160000
+DTSTAMP:20260219T072628Z
+DTSTART;TZID=Atlantic/Reykjavik:20260228T130000
+LAST-MODIFIED:20260219T072627Z
+LOCATION:Datenburg\, Bornheimerstraße 25
+SEQUENCE:2
+SUMMARY:Workshop Grundlagen der Elektrotechnik
+TRANSP:OPAQUE
+UID:57CE48ED-8891-4BC8-B549-135F2B0549E4
 X-APPLE-CREATOR-IDENTITY:com.apple.calendar
 X-APPLE-CREATOR-TEAM-IDENTITY:0000000000
 END:VEVENT
