@@ -1069,4 +1069,23 @@ UID:5DC04F88-AE57-40E0-AA1E-87C2F1FEDD99
 URL;VALUE=URI:
 X-APPLE-CREATOR-IDENTITY:com.apple.DataDetectorsViewService
 END:VEVENT
+BEGIN:VEVENT
+CREATED:20260308T075258Z
+DESCRIPTION:Crowd Gaming im bitcircus101 🎮\n\nChristian und Georg haben 
+ eine eigene Form von Crowd Gaming entwickelt.\nDas Publikum steuert das Sp
+ iel gemeinsam – mit Laser-Pointern auf einer großen Leinwand.\n\nGemein
+ sam durch verschiedene Retroartige-Game-Welten navigieren\, ausprobieren u
+ nd Spaß haben.
+DTEND;TZID=Europe/Berlin:20260321T220000
+DTSTAMP:20260308T075259Z
+DTSTART;TZID=Europe/Berlin:20260321T200000
+LAST-MODIFIED:20260308T075258Z
+LOCATION:bitcircus101 Dorotheenstraße 101\, 53111 Bonn\, Germany
+SEQUENCE:0
+SUMMARY:Laserpointer Games mit Georg
+TRANSP:OPAQUE
+UID:0EAC1863-1CB6-4BC7-BF39-553FA158A427
+X-APPLE-CREATOR-IDENTITY:com.apple.calendar
+X-APPLE-CREATOR-TEAM-IDENTITY:0000000000
+END:VEVENT
 END:VCALENDAR
