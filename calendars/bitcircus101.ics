@@ -740,13 +740,13 @@ DESCRIPTION:zine ohne beethoven - Die neue Ausgabe wird angeliefert und lie
  gt für Euch bereit. 100% offline\, könnt ihr euch im bitcircus101 mitneh
  men. Checkt es aus! 😊
 DTEND;VALUE=DATE:20251202
-DTSTAMP:20251113T073741Z
+DTSTAMP:20260327T095725Z
 DTSTART;VALUE=DATE:20251201
 LAST-MODIFIED:20251113T073740Z
 LOCATION:bitcircus101\nDorotheenstraße 101\, 53111 Bonn\, Germany
 RELATED-TO;RELTYPE=X-CALENDARSERVER-RECURRENCE-SET:8443B470-5398-4B18-8515-
  EBD210C907A3
-RRULE:FREQ=MONTHLY;INTERVAL=2;BYDAY=1MO
+RRULE:FREQ=MONTHLY;INTERVAL=2;UNTIL=20260105;BYDAY=1MO
 SEQUENCE:0
 SUMMARY:Der Bonner Schmierling kommt!
 TRANSP:TRANSPARENT
@@ -846,12 +846,12 @@ BEGIN:VEVENT
 CREATED:20251120T092635Z
 DESCRIPTION:Offener Burgenabend im Hackspace Datenburg. Kommt vorbei!
 DTEND;TZID=Europe/Berlin:20251125T220000
-DTSTAMP:20251219T231755Z
+DTSTAMP:20260315T014043Z
 DTSTART;TZID=Europe/Berlin:20251125T190000
 EXDATE;TZID=Europe/Berlin:20251223T190000
 LAST-MODIFIED:20251219T231755Z
 LOCATION:Bornheimer Straße 25\nBonn\, Deutschland
-RRULE:FREQ=WEEKLY
+RRULE:FREQ=WEEKLY;UNTIL=20260217T225959Z
 SEQUENCE:1
 SUMMARY:Offene Datenburg
 TRANSP:OPAQUE
@@ -874,12 +874,12 @@ BEGIN:VEVENT
 CREATED:20251120T093019Z
 DESCRIPTION:Brettspieleabend in der Datenburg. Kommt vorbei! 
 DTEND;TZID=Europe/Berlin:20251127T220000
-DTSTAMP:20251120T093222Z
+DTSTAMP:20260315T014108Z
 DTSTART;TZID=Europe/Berlin:20251127T190000
 EXDATE;TZID=Europe/Berlin:20251225T190000
 LAST-MODIFIED:20251120T093222Z
 LOCATION:Bornheimer Straße 25\nBonn\, Deutschland
-RRULE:FREQ=MONTHLY;BYDAY=4TH
+RRULE:FREQ=MONTHLY;UNTIL=20260122T225959Z;BYDAY=4TH
 SEQUENCE:4
 SUMMARY:Spieleabend in der Burg
 TRANSP:OPAQUE
@@ -1092,10 +1092,11 @@ X-APPLE-CREATOR-TEAM-IDENTITY:0000000000
 END:VEVENT
 BEGIN:VEVENT
 CREATED:20260310T073725Z
+DESCRIPTION:Mülleinsammeln in der Alstadt \n#Bonn
 DTEND;TZID=Europe/Berlin:20260321T120000
-DTSTAMP:20260310T073726Z
+DTSTAMP:20260314T235220Z
 DTSTART;TZID=Europe/Berlin:20260321T100000
-LAST-MODIFIED:20260310T073725Z
+LAST-MODIFIED:20260314T235219Z
 LOCATION:Dorotheenstraße 79\nBonn\, Deutschland
 SEQUENCE:0
 SUMMARY:Altstadt cleanup
@@ -1111,20 +1112,6 @@ X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS="Bonn, Deutschland";X-APPLE
  GxhbmQ4OUAAUAFaJgokEhIJCcVW0LReSUARNNAhFWtdHEAY2TIgi4mEuoWQg7skkAMB;X-APPL
  E-RADIUS=70.5873779606508;X-APPLE-REFERENCEFRAME=0;X-TITLE=Dorotheenstraß
  e 79:geo:50.739893\,7.091229
-END:VEVENT
-BEGIN:VEVENT
-CREATED:20260310T073756Z
-DTEND;TZID=Atlantic/Reykjavik:20260328T180000
-DTSTAMP:20260310T073756Z
-DTSTART;TZID=Atlantic/Reykjavik:20260328T130000
-LAST-MODIFIED:20260310T073756Z
-LOCATION:Datenburg\, Bornheimerstraße 25
-SEQUENCE:3
-SUMMARY:Tag des offenen Hackspaces
-TRANSP:OPAQUE
-UID:87F242AD-2E2F-4E90-9842-16D24412DDD8
-X-APPLE-CREATOR-IDENTITY:com.apple.calendar
-X-APPLE-CREATOR-TEAM-IDENTITY:0000000000
 END:VEVENT
 BEGIN:VEVENT
 CREATED:20260310T153012Z
@@ -1176,5 +1163,238 @@ X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-MAPKIT-HANDLE="CAESpwIIrk0Q9L
  czEwMRAAKgJlbkAA";X-APPLE-RADIUS=141.1750946044922;X-APPLE-REFERENCEFRAME=
  0;X-TITLE="bitcircus101\nDorotheenstraße 101, 53111 Bonn, Germany":geo:50
  .740501\,7.089417
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20260501T190218Z
+DTEND;TZID=Europe/Berlin:20260502T120000
+DTSTAMP:20260501T190237Z
+DTSTART;TZID=Europe/Berlin:20260502T100000
+LAST-MODIFIED:20260501T190218Z
+LOCATION:bitcircus101\nDorotheenstraße 101\, 53111 Bonn\, Germany
+SEQUENCE:1
+SUMMARY:Hackers Frühstück
+TRANSP:OPAQUE
+UID:FE179D13-58CE-4235-9939-012AD23E73FD
+X-APPLE-CREATOR-IDENTITY:com.apple.calendar
+X-APPLE-CREATOR-TEAM-IDENTITY:0000000000
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-MAPKIT-HANDLE="CAESuwIIrk0Q9L
+ u3rqqRrqoaGhIJguUIGcheSUAR+2iC8ohbHEAidwoHR2VybWFueRICREUaFk5vcnRoIFJoaW5l
+ LVdlc3RwaGFsaWEqBEJvbm4yBEJvbm46BTUzMTExQgRCb25uUhBEb3JvdGhlZW5zdHJhw59lWg
+ MxMDFiFERvcm90aGVlbnN0cmHDn2UgMTAxigEJTm9yZHN0YWR0KgxiaXRjaXJjdXMxMDEyFERv
+ cm90aGVlbnN0cmHDn2UgMTAxMgo1MzExMSBCb25uMgdHZXJtYW55OC9QAVpiCjsI9Lu3rqqRrq
+ oaEhIJguUIGcheSUAR+2iC8ohbHEAYrk2QAwGYAwGiAxFJMUE1NEI4OEFBNUNERERGNKIfIgj0
+ u7euqpGuqhoaFgoMYml0Y2lyY3VzMTAxEAAqAmVuQAA=";X-APPLE-RADIUS=141.175094604
+ 4922;X-APPLE-REFERENCEFRAME=0;X-TITLE="bitcircus101\nDorotheenstraße 101,
+  53111 Bonn, Germany":geo:50.740482\,7.089390
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20260501T190254Z
+DTEND;TZID=Europe/Berlin:20260502T143000
+DTSTAMP:20260501T190255Z
+DTSTART;TZID=Europe/Berlin:20260502T121500
+LAST-MODIFIED:20260501T190254Z
+LOCATION:bitcircus101\nDorotheenstraße 101\, 53111 Bonn\, Germany
+SEQUENCE:0
+SUMMARY:Hackertour - OSM cleanup Bonn
+TRANSP:OPAQUE
+UID:389605B6-81C2-4B8A-9E0D-845B182C9E9A
+X-APPLE-CREATOR-IDENTITY:com.apple.calendar
+X-APPLE-CREATOR-TEAM-IDENTITY:0000000000
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-MAPKIT-HANDLE="CAESuwIIrk0Q9L
+ u3rqqRrqoaGhIJguUIGcheSUAR+2iC8ohbHEAidwoHR2VybWFueRICREUaFk5vcnRoIFJoaW5l
+ LVdlc3RwaGFsaWEqBEJvbm4yBEJvbm46BTUzMTExQgRCb25uUhBEb3JvdGhlZW5zdHJhw59lWg
+ MxMDFiFERvcm90aGVlbnN0cmHDn2UgMTAxigEJTm9yZHN0YWR0KgxiaXRjaXJjdXMxMDEyFERv
+ cm90aGVlbnN0cmHDn2UgMTAxMgo1MzExMSBCb25uMgdHZXJtYW55OC9QAVpiCjsI9Lu3rqqRrq
+ oaEhIJguUIGcheSUAR+2iC8ohbHEAYrk2QAwGYAwGiAxFJMUE1NEI4OEFBNUNERERGNKIfIgj0
+ u7euqpGuqhoaFgoMYml0Y2lyY3VzMTAxEAAqAmVuQAA=";X-APPLE-RADIUS=141.175094604
+ 4922;X-APPLE-REFERENCEFRAME=0;X-TITLE="bitcircus101\nDorotheenstraße 101,
+  53111 Bonn, Germany":geo:50.740482\,7.089390
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20260501T190505Z
+DTEND;TZID=Europe/Berlin:20260525T200100
+DTSTAMP:20260518T194803Z
+DTSTART;TZID=Europe/Berlin:20260525T130100
+LAST-MODIFIED:20260518T194802Z
+LOCATION:bitcircus101\nDorotheenstraße 101\, 53111 Bonn\, Germany
+SEQUENCE:2
+SUMMARY:Geburtstag - bitcircus101 wird 1 Jahr
+TRANSP:OPAQUE
+UID:310FC895-5CDB-40AA-BD1A-26AB2C427432
+X-APPLE-CREATOR-IDENTITY:com.apple.calendar
+X-APPLE-CREATOR-TEAM-IDENTITY:0000000000
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-MAPKIT-HANDLE="CAESuwIIrk0Q9L
+ u3rqqRrqoaGhIJguUIGcheSUAR+2iC8ohbHEAidwoHR2VybWFueRICREUaFk5vcnRoIFJoaW5l
+ LVdlc3RwaGFsaWEqBEJvbm4yBEJvbm46BTUzMTExQgRCb25uUhBEb3JvdGhlZW5zdHJhw59lWg
+ MxMDFiFERvcm90aGVlbnN0cmHDn2UgMTAxigEJTm9yZHN0YWR0KgxiaXRjaXJjdXMxMDEyFERv
+ cm90aGVlbnN0cmHDn2UgMTAxMgo1MzExMSBCb25uMgdHZXJtYW55OC9QAVpiCjsI9Lu3rqqRrq
+ oaEhIJguUIGcheSUAR+2iC8ohbHEAYrk2QAwGYAwGiAxFJMUE1NEI4OEFBNUNERERGNKIfIgj0
+ u7euqpGuqhoaFgoMYml0Y2lyY3VzMTAxEAAqAmVuQAA=";X-APPLE-RADIUS=141.175094604
+ 4922;X-TITLE="bitcircus101\nDorotheenstraße 101, 53111 Bonn, Germany":geo
+ :50.740482\,7.089390
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20260508T101821Z
+DESCRIPTION:Tickets: https://ticket.bonn.digital/bonndigital/bcbn26/\nEinla
+ ss: 09.05.2026 09:30\nVeranstalter: Bonn.digital eGbR
+DTEND;TZID=Europe/Berlin:20260509T180000
+DTSTAMP:20260508T101822Z
+DTSTART;TZID=Europe/Berlin:20260509T100000
+LAST-MODIFIED:20260508T101821Z
+LOCATION:cronn gmbh\, Portlandweg 4\, 53227 Bonn
+SEQUENCE:0
+SUMMARY:BarCamp Bonn 2026
+TRANSP:OPAQUE
+UID:EEC2D2D1-3DC4-4237-8934-7CD8403B60A0
+X-APPLE-CREATOR-IDENTITY:com.apple.calendar
+X-APPLE-CREATOR-TEAM-IDENTITY:0000000000
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-MAPKIT-HANDLE="CAESiAII2TIaEg
+ nsYj8w7FtJQBHneSbqu5kcQCJ+CgtEZXV0c2NobGFuZBICREUaE05vcmRyaGVpbi1XZXN0ZmFs
+ ZW4qBEJvbm4yBEJvbm46BTUzMjI3QgVCZXVlbFILUG9ydGxhbmR3ZWdaATRiDVBvcnRsYW5kd2
+ VnIDRyA0ZvbYoBCk9iZXJrYXNzZWyKAQpSYW1lcnNkb3JmKg1Qb3J0bGFuZHdlZyA0Mg1Qb3J0
+ bGFuZHdlZyA0MgpPYmVya2Fzc2VsMgo1MzIyNyBCb25uMgtEZXV0c2NobGFuZDg5QABQAVomCi
+ QSEgnsYj8w7FtJQBHneSbqu5kcQBjZMiDqxLyF3az+jCyQAwE=";X-APPLE-RADIUS=70.5873
+ 7782985177;X-APPLE-REFERENCEFRAME=1;X-TITLE="cronn gmbh, Portlandweg 4, 53
+ 227 Bonn":geo:50.718145\,7.150131
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20260522T184357Z
+DESCRIPTION:Es gibt wieder eine queere Pride Demonstration in Bonn.\nSie is
+ t am 18. Juli 2026.\nWir starten an der Rheinlust. Das ist in Beuel am Rhe
+ in.\nDie Demonstration endet am Münsterplatz. Da gibt es noch eine Kundge
+ bung.\nViele queere Menschen sprechen darüber\, was ihnen wichtig ist.\nI
+ hr könnt auf der Pride andere queere Menschen kennenlernen.\nIhr könnt a
+ uch gerne kommen\, wenn Ihr nicht queer seid.\n\nEs gibt ein Paar Regeln f
+ ür die Demonstration.\nWir wollen\n– keine Länder-Fahnen\n– keine Pa
+ rtei-Fahnen\nWir arbeiten nicht mit Parteien zusammen. Wir möchten nicht\
+ , dass sie für sich bei unserer Demonstration werben.\nWir sind also Part
+ ei•los.\n– keine Werbung für Unternehmen\nWir sind un-kommerziell. Wi
+ r wollen mit der Demonstration kein Geld verdienen.\n\nWir möchten\, dass
+  die Demonstration barrierefrei ist.\nWir wissen\, dass wir sie nicht ganz
+  barrierefrei machen können.\nAber wir strengen uns sehr an.\nEs gibt ein
+ e Person\, die alles in Deutsche Gebärden-Sprache übersetzt.\nEs gibt Ri
+ kschas für Menschen\, die nicht so gut laufen können.\nEs gibt einen Ruh
+ e-Block. Hier gibt es keine Musik. Es ist ruhiger. Es ist auch mehr Platz 
+ zwischen den Menschen. Es ist auch nicht so eng.\nEs gibt ein Awareness-Te
+ am. Das sind Menschen\, die Euch helfen\, wenn es Euch nicht gut geht.\nOd
+ er wenn Ihr Diskriminierung erlebt. Das Awareness-Team hat auch Masken\, B
+ inden\, Wasser und Trauben-Zucker dabei.\nAlle Reden gibt es auch auf Engl
+ isch und in Einfacher Sprache zu lesen. Für manche Menschen ist es besser
+ \, Dinge zu lesen als sie zu hören. Zum Beispiel weil sie nicht gut höre
+ n können. Oder weil sie sich schlecht konzentrieren können.\n\nWir möch
+ ten\, dass die Demonstration\n– Intersektional\n– Inklusiv\n– Nachha
+ ltig ist.\n\n\n\nWer macht diese Demonstration?\n\nDie erste Demonstration
+  gab es es 2020. Es gab schon queere Gruppen in Bonn.\nViele haben sich zu
+ sammen geschlossen. Sie haben das Bündnis „Pride Demo Bonn“ geschaffe
+ n.\nSie wollten zusammen eine queere Pride Demonstration in Bonn machen.\n
+ Diese Demo sollte nachhaltig und inklusiv sein.\nEs gab 2020 noch keine De
+ monstration. Es gab aber eine Kundgebung. 200 Menschen waren da.\n2021 war
+ en schon mehr Menschen da. Da gab es auch eine Demonstration\, auf der wir
+  durch Bonn gelaufen sind.\nDas Bündnis hat sich 2022 neu aufgestellt. Es
+  gab wieder eine Demo.\n2023 waren fast 700 Menschen bei der queeren Pride
+  in Bonn. Richtig gut!\n2024 waren wir 1.200 Menschen. Nächstes Jahr hoff
+ entlich noch mehr!\n\n\nDas Motto der queeren Pride Bonn ist:\nUnkommerzie
+ ll – kämpferisch – parteilos\nEin Motto ist etwas\, woran wir uns ori
+ entieren.\nWir wollen unkommerziell\, kämpferisch und parteilos bei allem
+  sein\, was wir machen.\nKämpferisch bedeutet: Wir kämpfen für unsere R
+ echte. Wir sind nicht immer lieb und nett.\n\n\nWir erklären jetzt Wörte
+ r in Einfacher Sprache.\n\nQueer ist ein Wort für Menschen\, die mit Blic
+ k auf Geschlecht\, sexuelle oder romantische\nOrientierung anders sind\, a
+ ls es die Gesellschaft gut findet.\nDas sind zum Beispiel Frauen\, die Fra
+ uen lieben.\nOder Menschen\, die keine Anziehung erleben. Die zum Beispiel
+  keinen Sex mit anderen\nMenschen haben wollen.\nOder Menschen\, die keine
+  Frau und kein Mann sind.\nQueer zu sein heißt\, Strukturen zu durch•br
+ echen.\nNicht alle queeren Menschen möchten politisch sein.\nViele wollen
+  einfach in Ruhe leben.\nAlle queeren Menschen erleben viel Diskriminierun
+ g.\nDiese Diskriminierung heißt Queer•feindlichkeit.\nViele queere Mens
+ chen setzen sich politisch dafür ein\, mehr Rechte zu bekommen.\nSie mach
+ en zum Beispiel bei Demonstrationen mit.\n\nBei einer Demonstration treffe
+ n sich Menschen\, um für oder gegen etwas zu kämpfen.\nEine Demonstratio
+ n heißt oft: Menschen gehen durch die Straßen. Sie haben oft Plakate dab
+ ei.\nSie rufen Sprüche. Auch Menschen\, die nicht bei der Demonstration s
+ ind\, sollen die\nDemonstration sehen.\nWenn Leute von „Demo“ sprechen
+ \, dann meinen sie „Demonstration“.\nAuch bei einer Kundgebung treffen
+  sich Menschen\, um für oder gegen etwas zu kämpfen. Sie treffen sich an
+  einem Ort und bleiben dort. Es gibt Reden.\nEine Demonstration besteht of
+ t aus einer Kundgebung und einem Teil\, wo die Menschen durch die Straßen
+  laufen.\n\nAwareness ist Englisch und bedeutet „Bewusst-Sein“. Wir m
+ öchten nicht\, dass Menschen auf der Demonstration Diskriminierung erlebe
+ n. Wir wissen aber auch\, dass Diskriminierung sehr schnell passiert. Wir 
+ lassen Menschen\, die Diskriminierung erleben\, nicht damit alleine. Wir w
+ issen auch\, dass eine Demonstration anstrengend ist. Wir helfen Menschen\
+ , denen es nicht gut geht. Wir möchten aber auch sagen: Wir sind keine Th
+ erapeut*innen.\n\nWir wissen\, dass viele Menschen Diskriminierung erleben
+ . Viele Menschen sind von mehreren Formen der Diskriminierung betroffen. S
+ chwarze queere Menschen erleben zum Beispiel Rassismus und Queer-Feindlich
+ keit. Wenn wir ihr Leben beschreiben wollen\, können wir nicht einfach Ra
+ ssismus und Queer-Feindlichkeit zusammen rechnen.\nEs entsteht auch eine n
+ eue Form der Diskriminierung. Das ist dann die Verschränkung von Rassismu
+ s und Queer-Feindlichkeit. Schwarze queere Menschen erleben zum Beispiel m
+ ehr Gewalt als weiße queere Menschen.\n\nDas können wir mit dem Konzept 
+ der Intersektionalität erklären. Das kommt von\nKimberlé Crenshaw. Es e
+ rklärt das Leben vom Menschen\, die von mehr als einer Form der\nDiskrimi
+ nierung betroffen sind.\n\nNachhaltig kann vieles bedeuten. Zum Beispiel: 
+ Wir gehen gut mit den Ressourcen um\, die wir haben. Energie\, Wasser und 
+ Essen sind Ressourcen. Für unsere Demonstration bedeutet das: Wir nutzen 
+ vieles wieder und lange. Wir nutzen wenig Plastik.
+DTEND;TZID=Europe/Berlin:20260718T150000
+DTSTAMP:20260522T184358Z
+DTSTART;TZID=Europe/Berlin:20260718T110000
+LAST-MODIFIED:20260522T184357Z
+LOCATION:TBA
+SEQUENCE:0
+SUMMARY:Pride Bonn
+TRANSP:OPAQUE
+UID:B354382B-F062-4757-840F-16C0C77178D9
+URL;VALUE=URI:https://pridebonn.org/einfache-sprache/
+X-APPLE-CREATOR-IDENTITY:com.apple.calendar
+X-APPLE-CREATOR-TEAM-IDENTITY:0000000000
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20260522T184450Z
+DESCRIPTION:Am 1. August 2026 feiern wir auf dem Münsterplatz in Bonn den 
+ CSD 2026 / Beethovens Bunte mit Euch.  \nDas offizielle Bühnenprogramm b
+ eginnt am Samstag um ca. 13 Uhr und endet ca. um 21 Uhr. Die Demo durch di
+ e Stadt beginnt um ca. 17:45 Uhr am Münsterplatz. \n 
+DTEND;TZID=Europe/Berlin:20260801T210000
+DTSTAMP:20260522T184450Z
+DTSTART;TZID=Europe/Berlin:20260801T120000
+LAST-MODIFIED:20260522T184450Z
+LOCATION:Münsterplatz Bonn\, Münsterplatz\, Bonn\, NRW\, 53111\, Deutschl
+ and
+SEQUENCE:0
+SUMMARY:1 August  2026 CSD Beethovens Bunte
+TRANSP:OPAQUE
+UID:7856CDF7-054E-46BC-9EA9-AECA10B0FDF3
+URL;VALUE=URI:https://www.rheinqueer-bonn.de/event/1-august-2026-csd-beetho
+ vens-bunte/
+X-APPLE-CREATOR-IDENTITY:com.apple.calendar
+X-APPLE-CREATOR-TEAM-IDENTITY:0000000000
+X-EVOLUTION-CALDAV-ETAG:d8d671ab6a8313fc256f2bf8b2888ba5
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20260623T184903Z
+DESCRIPTION:Stelle ein repository deiner Wahl vor. 5-10 Minuten. 
+DTEND;TZID=Europe/Berlin:20260724T203000
+DTSTAMP:20260623T184903Z
+DTSTART;TZID=Europe/Berlin:20260724T193000
+LAST-MODIFIED:20260623T184903Z
+LOCATION:bitcircus101\nDorotheenstraße 101\, 53111 Bonn\, Germany
+SEQUENCE:0
+SUMMARY:Not your repo
+TRANSP:OPAQUE
+UID:E704D718-5974-48A1-BD1E-32D6272B9572
+URL;VALUE=URI:https://bitcircus101.de/events
+X-APPLE-CREATOR-IDENTITY:com.apple.calendar
+X-APPLE-CREATOR-TEAM-IDENTITY:0000000000
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-MAPKIT-HANDLE="CAESuwIIrk0Q9L
+ u3rqqRrqoaGhIJguUIGcheSUAR+2iC8ohbHEAidwoHR2VybWFueRICREUaFk5vcnRoIFJoaW5l
+ LVdlc3RwaGFsaWEqBEJvbm4yBEJvbm46BTUzMTExQgRCb25uUhBEb3JvdGhlZW5zdHJhw59lWg
+ MxMDFiFERvcm90aGVlbnN0cmHDn2UgMTAxigEJTm9yZHN0YWR0KgxiaXRjaXJjdXMxMDEyFERv
+ cm90aGVlbnN0cmHDn2UgMTAxMgo1MzExMSBCb25uMgdHZXJtYW55OC9QAVpiCjsI9Lu3rqqRrq
+ oaEhIJguUIGcheSUAR+2iC8ohbHEAYrk2QAwGYAwGiAxFJMUE1NEI4OEFBNUNERERGNKIfIgj0
+ u7euqpGuqhoaFgoMYml0Y2lyY3VzMTAxEAAqAmVuQAA=";X-APPLE-RADIUS=141.175094604
+ 4922;X-TITLE="bitcircus101\nDorotheenstraße 101, 53111 Bonn, Germany":geo
+ :50.740482\,7.089390
 END:VEVENT
 END:VCALENDAR
